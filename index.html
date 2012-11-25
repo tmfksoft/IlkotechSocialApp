@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
         <link rel="stylesheet" href="css/main.css" />
         <style>
-			#result { display:none !important; }
+			#result { display:none; }
         </style>
 		<!--<script src="https://raw.github.com/carlo/jquery-base64/master/jquery.base64.min.js">
 		</script>-->
@@ -51,7 +51,7 @@
                             <input name="" id="password" placeholder="" value="" type="password" />
                         </fieldset>
                     </div>
-                    <a data-role="button" data-theme="a" href="javascript:checkdetails();" onclick="checkdetails();">
+                    <a data-role="button" data-theme="a" href="javascript:checkdetails();">
                         Login
                     </a>
                 </form>
@@ -59,11 +59,13 @@
         </div>
         <script>
             function checkdetails() {
+				//$('#result').css('display','inherit');
 				$('#result').show();
 				//encoded = $.base64.encode($('#username').attr('value')+"|"+$('#password').attr('value')); Blame JQuery
 				$.getJSON('http://social.ilkotech.co.uk/api/login.php?username='+$('#username').attr('value')+"&password="+$('#password').attr('value')+"", function(data){
 					// JScript hates everything living :P
 					if (data.status == 'BAD') {
+						$('#result').text(data.message);
 						alert(data.message);
 					}
 					else {
