@@ -59,14 +59,13 @@
         </div>
         <script>
             function checkdetails() {
-				//$('#result').css('display','inherit');
+				$.mobile.pageLoading(); // Start loading
 				$('#result').show();
 				//encoded = $.base64.encode($('#username').attr('value')+"|"+$('#password').attr('value')); Blame JQuery
 				$.getJSON('http://social.ilkotech.co.uk/api/login.php?username='+$('#username').attr('value')+"&password="+$('#password').attr('value')+"", function(data){
 					// JScript hates everything living :P
 					if (data.status == 'BAD') {
 						$('#result').text(data.message);
-						//alert(data.message);
 					}
 					else {
 						$('#result').text(data.message);
@@ -74,6 +73,7 @@
 						// Redirect to main page.
 						$.mobile.changePage('home.html');
 					}
+					$.mobile.pageLoading(true); // Stop loading animation!
 				},"json");
 			}
         </script>
