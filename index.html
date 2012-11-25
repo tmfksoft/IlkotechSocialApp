@@ -64,7 +64,7 @@
 				$.getJSON('http://social.ilkotech.co.uk/api/login.php?username='+$('#username').attr('value')+"&password="+$('#password').attr('value')+"", function(data){
 					// JScript hates everything living :P
 					if (data.status == 'BAD') {
-						$('#result').text(data.message);
+						alert(data.message);
 					}
 					else {
 						$('#result').text(data.message);
